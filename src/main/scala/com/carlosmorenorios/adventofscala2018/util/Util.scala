@@ -16,7 +16,7 @@ object Util {
     }
   }
 
-  def replaceInList(list: List[Int], index: Int, value: Int) : List[Int] = {
+  def replaceInList(list: List[Int], index: Int, value: Int): List[Int] = {
     list.patch(index, Seq(value), 1)
   }
 
@@ -25,4 +25,12 @@ object Util {
       (if (n.startsWith("-")) -1 else 1)
   }
 
+  def manhattanDistance(point1: List[Int], point2: List[Int]): Int = {
+    manhattanDistanceJoinedPoints(point1.union(point2): _*)
+  }
+
+  private def manhattanDistanceJoinedPoints(points: Int*): Int = {
+    val length: Int = points.length / 2
+    (0 until length).fold(0)((sum, i) => sum + Math.abs(points(i) - points(i + length)))
+  }
 }
